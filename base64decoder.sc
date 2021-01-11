@@ -25,7 +25,7 @@ def decodeBase64(): String = {
        .code
        .map(s => s.substring(1, s.length - 1))
        .filter(_.length >= 2)
-       .map{ str => 
+       .map{ str =>
             deflate(Base64.getDecoder.decode(str.getBytes(Charset.forName("UTF-8"))))
            }
        .filter(_.nonEmpty)
