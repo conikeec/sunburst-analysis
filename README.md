@@ -7,7 +7,7 @@
 // Derived from https://github.com/Shadow0ps/solorigate_sample_source/
 val sunburst_cpg = importCpg(“/XXX/sunburst.bin.zip")
 ```
-### Fetch all hardcoded literals in the trojanized DLL . The system needs to set a threshold to determine if there are one too many hashed literals in the list. To determine the encoding scheme follow the method that is dereferencing each literal to attempt a reversal (the scheme could be base64 encode, SHA-x, FNV-1a). In cases like these, attempt to brute force the decoding process by running this analysis in a separate thread (could be computationally intensive). Skipping the decoding process as FNV-1a was determine to be the encoding scheme (by FireEye and adjunct community) in the GetHash(..) function
+### Fetch all hardcoded literals in the trojanized DLL . The system needs to set a threshold to determine if there are one too many hashed literals in the list. To determine the encoding scheme follow the method that is dereferencing each literal to attempt a reversal (the scheme could be base64 encode, SHA-x, FNV-1a). In cases like these, attempt to brute force the decoding process by running this analysis in a separate thread (could be computationally intensive). Skipping the decoding process as FNV-1a was determined to be the encoding scheme (by FireEye and adjunct community) in the GetHash(..) function
 ```
 val all_literals = cpg.literal.code.l.distinct.map(_.replaceAll("^\"|\"$", "")).toSet
 ```
