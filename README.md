@@ -48,8 +48,8 @@ cpg.method.name("<operator>.(and|xor|or)").caller.fullName.l.distinct
 
 ```
 cpg.method.name("<operator>.(and|xor|or)").caller.fullName.l.distinct.map {
-           item => (item, cpg.method.fullNameExact(item).caller.fullName.l.distinct)
-        }
+  item => (item, cpg.method.fullNameExact(item).caller.fullName.l.distinct)
+}
 ```
 
 ### Identify all methods that take literals (hardcoded) as arguments
