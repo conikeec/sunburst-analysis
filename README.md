@@ -38,10 +38,18 @@ val all_literals = cpg.literal.code.l.distinct.map(_.replaceAll("^\"|\"$", "")).
 decodeBase64()
 ```
 
-### For keeping the hardcoded values in the file like the list of processes, services, etc., the malware used a variant of the FNV-1a hashing algorithm by XORing the computed hash of the string with a hardcoded value at the end. In order to determine functions using Hashing techniques, ideintiy all code blocks using AND, XOR .. operators
+### For keeping the hardcoded values in the file like the list of processes, services, etc., the malware used a variant of the FNV-1a hashing algorithm by XORing the computed hash of the string with a hardcoded value at the end. In order to determine functions using variant Hashing techniques, ideintiy all code blocks using AND, XOR .. operators
 
 ```
 cpg.method.name("<operator>.(and|xor|or)").caller.fullName.l.distinct
+```
+
+### Based on the functions using such operators as indicated above, identify fan-in (all other functions calling this function). This list can determine suspicious encode/decode operations
+
+```
+cpg.method.name("<operator>.(and|xor|or)").caller.fullName.l.distinct.map {
+           item => (item, cpg.method.fullNameExact(item).caller.fullName.l.distinct)
+        }
 ```
 
 ### Identify all methods that take literals (hardcoded) as arguments
