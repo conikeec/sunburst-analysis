@@ -196,6 +196,7 @@ private val MASK = 0xff
 ### Sunburst checks for the following running processes on host (to determine dormancy or execute)
 
 ```
+import scala.collection.immutable._
 
 val process_blacklist = Set(
 "apimonitor-x64",
